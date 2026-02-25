@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import Spinner from "./Spinner.vue";
 
 defineProps<{ loading?: boolean }>();
 
@@ -34,7 +35,7 @@ defineExpose({ open, close });
     </button>
 
     <div v-if="loading" class="fritel-filterables-dialog--loader">
-      Loading...
+      <spinner />
     </div>
     <slot v-else />
   </dialog>
