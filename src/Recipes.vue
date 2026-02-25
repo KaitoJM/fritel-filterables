@@ -3,6 +3,7 @@ import Filters from "./components/Recipes/Filters.vue";
 import { useSelectedFilters } from "./composables/useSelectedFilters";
 import SelectedFilters from "./components/Recipes/SelectedFilters.vue";
 import ProductGrid from "./components/Recipes/ProductGrid.vue";
+import Search from "./components/Recipes/Search.vue";
 
 const { selectedFilters } = useSelectedFilters();
 </script>
@@ -10,6 +11,7 @@ const { selectedFilters } = useSelectedFilters();
 <template>
   <div class="fritel-filterables-app--container">
     <div class="h-max">
+      <Search />
       <Filters />
     </div>
     <div class="w-full">

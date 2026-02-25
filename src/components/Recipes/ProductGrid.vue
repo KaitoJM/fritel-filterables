@@ -2,14 +2,15 @@
 import { computed, onMounted, ref, useTemplateRef, watch } from "vue";
 import UTDService from "../../services/UTDService";
 import { useSelectedFilters } from "../../composables/useSelectedFilters";
+import { useSearch } from "../../composables/useSearch";
 import siteUrl from "../../constants/siteUrl";
 import messages from "../../constants/messages";
 import SelectedFilters from "./SelectedFilters.vue";
 
 const { selectedFilters } = useSelectedFilters();
+const { searchString } = useSearch();
 const isLoading = ref(true);
 const expandMobileFilter = ref(false);
-const searchString = ref("");
 const products = ref([]);
 const statusClasses = {
   sold: "bg-red-700",
@@ -63,9 +64,6 @@ onMounted(() => {
 
 <template>
   <div ref="fritelFilterablesProductGridRef" class="fritel-filterables-grid">
-    <div class="fritel-filterables-grid--search">
-      <input type="text" v-model="searchString" placeholder="Search..." />
-    </div>
     <SelectedFilters
       :class="{
         'fritel-filterables-grid--filter-breadcrumbs': selectedFilters.length,
@@ -161,12 +159,6 @@ onMounted(() => {
 
   &--status {
     @apply rounded p-1 text-sm w-max;
-  }
-
-  &--search {
-    input {
-      @apply bg-[#f5f5f7] p-2 rounded-md mb-3 w-full focus:outline-primary;
-    }
   }
 }
 </style>
