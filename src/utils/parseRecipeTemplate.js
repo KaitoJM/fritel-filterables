@@ -27,5 +27,9 @@ export function parseRecipeTemplate(templateHtml, recipe) {
   };
 
   const template = Handlebars.compile(templateHtml);
-  return template(data);
+  const html = template(data);
+
+  // Some UTD templates use ${variable} syntax in CSS (e.g. background-image).
+  // Replace any remaining ${key} patterns using the same data object.
+  return html.replace(/\$\{(\w+)\}/g, (match, key) => data[key] ?? match);
 }
