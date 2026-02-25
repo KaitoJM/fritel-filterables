@@ -95,10 +95,14 @@ const onLeave = (el) => {
   </li>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
+li {
+  @apply bg-white p-4 border border-[#EFEFEF] rounded;
+}
+
 .fritel-filterables-filter-group {
   &--title {
-    @apply cursor-pointer flex gap-2 text-primary fill-primary mb-3 items-center hover:bg-black/5 rounded-md p-2 transition-colors;
+    @apply cursor-pointer justify-between flex gap-2 text-primary fill-primary mb-3 items-center hover:bg-black/5 rounded-md p-2 transition-colors;
   }
 
   &--item {

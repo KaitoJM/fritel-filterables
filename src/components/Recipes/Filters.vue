@@ -45,30 +45,39 @@ onMounted(() => {
 </script>
 
 <template>
-  <ul class="filter-group-container">
-    <FilterGroup
-      class="w-[300px]"
-      :name="filterCategories.name"
-      :items="filterCategories.items"
-      default-expand
-    />
-  </ul>
-  <br />
-  <ul class="filter-group-container">
-    <FilterGroup
-      class="w-[300px]"
-      :name="filterAuthors.name"
-      :items="filterAuthors.items"
-      default-expand
-    />
-  </ul>
+  <div class="filter-container">
+    <h3>Filters</h3>
+    <ul class="filter-group-container">
+      <FilterGroup
+        class="w-[300px]"
+        :name="filterCategories.name"
+        :items="filterCategories.items"
+        default-expand
+      />
+    </ul>
+    <br />
+    <ul class="filter-group-container">
+      <FilterGroup
+        class="w-[300px]"
+        :name="filterAuthors.name"
+        :items="filterAuthors.items"
+        default-expand
+      />
+    </ul>
+  </div>
 </template>
 
 <style scoped>
-.filter-group-container {
-  background-color: #f5f5f7;
+h3 {
+  @apply mb-4 text-[20px];
+}
+
+.filter-container {
+  background-color: #efefef80;
   padding: 1.25rem 0.75rem;
-  border-radius: 6px;
+  border-radius: 12px;
   width: max-content;
+}
+.filter-group-container {
 }
 </style>
