@@ -101,7 +101,7 @@ onMounted(() => {
               :name="product.name"
               :author="product?.locationPageMeta?.author"
               :image="product.metadata.image"
-              :link="siteUrl + product.bloggerPageUrl"
+              :pageId="product.pageId"
               :tags="product.metadata.categories"
             />
           </TransitionGroup>
