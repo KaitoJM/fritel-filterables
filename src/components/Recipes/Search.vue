@@ -31,7 +31,7 @@ const { searchString } = useSearch();
   }
 
   &--icon {
-    @apply flex items-center justify-center bg-primary rounded-r-md px-3 shrink-0;
+    @apply flex items-center justify-center bg-primary rounded-r-md px-6 shrink-0;
 
     svg {
       @apply w-4 h-4 text-white;

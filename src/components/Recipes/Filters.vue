@@ -73,8 +73,9 @@ h3 {
 }
 
 .filter-container {
+  @apply p-4;
+
   background-color: #efefef80;
-  padding: 1.25rem 0.75rem;
   border-radius: 12px;
   width: max-content;
 }

@@ -9,14 +9,17 @@ const props = defineProps({
 </script>
 
 <template>
-  <span class="fritel-filterables-badge" :class="`fritel-filterables-badge--${props.variant}`">
+  <span
+    class="fritel-filterables-badge"
+    :class="`fritel-filterables-badge--${props.variant}`"
+  >
     <slot />
   </span>
 </template>
 
 <style lang="scss">
 .fritel-filterables-badge {
-  @apply inline-flex items-center rounded px-2 py-0.5 text-xs font-medium w-max;
+  @apply inline-flex items-center rounded px-2 py-0.5 text-[1.2rem] font-medium w-max;
 
   &--primary {
     @apply bg-primary text-white;

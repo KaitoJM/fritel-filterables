@@ -75,7 +75,7 @@ const go = (page) => emit("update:currentPage", page);
   @apply flex items-center justify-center gap-1 mt-6;
 
   button {
-    @apply w-9 h-9 rounded-md text-sm font-medium transition-colors;
+    @apply w-16 h-16 rounded-md text-[1.5rem] font-medium transition-colors;
     @apply bg-[#f5f5f7] hover:bg-primary hover:text-white;
 
     &.active {
@@ -88,7 +88,7 @@ const go = (page) => emit("update:currentPage", page);
   }
 
   span {
-    @apply w-9 h-9 flex items-center justify-center text-sm;
+    @apply w-9 h-9 flex items-center justify-center text-[1.5rem];
   }
 }
 </style>

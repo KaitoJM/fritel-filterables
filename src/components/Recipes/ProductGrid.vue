@@ -7,17 +7,14 @@ import siteUrl from "../../constants/siteUrl";
 import messages from "../../constants/messages";
 import SelectedFilters from "./SelectedFilters.vue";
 import Pagination from "./Pagination.vue";
+import Item from "./Item.vue";
+import ItemLoader from "./ItemLoader.vue";
 
 const { selectedFilters } = useSelectedFilters();
 const { searchString } = useSearch();
 const isLoading = ref(true);
 const expandMobileFilter = ref(false);
 const products = ref([]);
-const statusClasses = {
-  sold: "bg-red-700",
-  reserved: "bg-primary",
-  available: "bg-green-700",
-};
 
 const filterRecipes = () => {
   let searchProducts = products.value;
@@ -58,7 +55,9 @@ const PAGE_SIZE = 12;
 const currentPage = ref(1);
 
 const filteredProducts = computed(filterRecipes);
-const totalPages = computed(() => Math.ceil(filteredProducts.value.length / PAGE_SIZE));
+const totalPages = computed(() =>
+  Math.ceil(filteredProducts.value.length / PAGE_SIZE),
+);
 const paginatedProducts = computed(() => {
   const start = (currentPage.value - 1) * PAGE_SIZE;
   return filteredProducts.value.slice(start, start + PAGE_SIZE);
@@ -80,7 +79,7 @@ onMounted(() => {
         'fritel-filterables-grid--filter-breadcrumbs': selectedFilters.length,
       }"
     />
-    <div v-if="isLoading">Loading receipes...</div>
+    <ItemLoader v-if="isLoading" />
     <Transition v-else name="fade" class="w-full">
       <div>
         <p
@@ -96,27 +95,20 @@ onMounted(() => {
             class="fritel-filterables-grid--list"
             :class="expandMobileFilter ? 'mobile-expand' : 'mobile-closed'"
           >
-            <li
+            <Item
               v-for="product in paginatedProducts"
               :key="product.id"
-              class="fritel-filterables-grid--item"
-            >
-              <a :href="siteUrl + product.bloggerPageUrl">
-                <div class="fritel-filterables-grid--image-container">
-                  <img :src="product.metadata.image" />
-                </div>
-                <div class="fritel-filterables-grid--details">
-                  <p>{{ product?.locationPageMeta?.author }}</p>
-                  <div class="fritel-filterables-grid--item-titlebar">
-                    <h3 class="fritel-filterables-grid--title">
-                      {{ product.name }}
-                    </h3>
-                  </div>
-                </div>
-              </a>
-            </li>
+              :name="product.name"
+              :author="product?.locationPageMeta?.author"
+              :image="product.metadata.image"
+              :link="siteUrl + product.bloggerPageUrl"
+              :tags="product.metadata.categories"
+            />
           </TransitionGroup>
-          <Pagination v-model:currentPage="currentPage" :totalPages="totalPages" />
+          <Pagination
+            v-model:currentPage="currentPage"
+            :totalPages="totalPages"
+          />
         </div>
       </div>
     </Transition>
@@ -143,34 +135,6 @@ onMounted(() => {
     &.mobile-closed {
       @apply grid-cols-1 sm:grid-cols-2 md:grid-cols-3;
     }
-  }
-
-  &--item {
-    @apply bg-[#f5f5f7] rounded-lg overflow-clip;
-  }
-
-  &--image-container {
-    @apply h-60 overflow-clip md:h-80;
-
-    img {
-      @apply object-cover h-80 hover:scale-110 w-full transition-transform duration-700;
-    }
-  }
-
-  &--title {
-    @apply text-[#1a1a1a];
-  }
-
-  &--price {
-    @apply text-primary;
-  }
-
-  &--details {
-    @apply p-3 flex flex-col gap-2;
-  }
-
-  &--status {
-    @apply rounded p-1 text-sm w-max;
   }
 }
 </style>

@@ -10,7 +10,7 @@ const { selectedFilters } = useSelectedFilters();
 
 <template>
   <div class="fritel-filterables-app--container">
-    <div class="h-max">
+    <div class="h-max fritel-filterables-app--left">
       <Search />
       <Filters />
     </div>
@@ -23,7 +23,11 @@ const { selectedFilters } = useSelectedFilters();
 <style lang="scss">
 .fritel-filterables-app {
   &--container {
-    @apply flex gap-4 p-6;
+    @apply flex gap-16 p-6;
+  }
+
+  &--left {
+    @apply flex flex-col gap-4;
   }
 }
 </style>
