@@ -1,1 +1,1 @@
-export default "https://moraantiques.blogspot.com";
+export default "https://fritelcom.wpcomstaging.com/";

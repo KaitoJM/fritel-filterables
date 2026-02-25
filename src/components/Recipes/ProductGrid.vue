@@ -82,11 +82,14 @@ const handlePreview = async (pageId) => {
   try {
     const recipe = products.value.find((p) => p.pageId === pageId);
     const pageHTML = await UTDService.openRecipePreview(pageId);
-    const processedHtml = recipe
+    let processedHtml = recipe
       ? parseRecipeTemplate(pageHTML, recipe)
       : pageHTML;
 
-    previewHtml.value = buildRecipePreviewHtml(processedHtml, UTDService.siteId);
+    previewHtml.value = buildRecipePreviewHtml(
+      processedHtml,
+      UTDService.siteId,
+    );
   } catch (error) {
     dialogRef.value?.close();
   } finally {
