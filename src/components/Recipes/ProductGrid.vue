@@ -6,6 +6,7 @@ import { useSearch } from "../../composables/useSearch";
 import siteUrl from "../../constants/siteUrl";
 import messages from "../../constants/messages";
 import SelectedFilters from "./SelectedFilters.vue";
+import Pagination from "./Pagination.vue";
 
 const { selectedFilters } = useSelectedFilters();
 const { searchString } = useSearch();
@@ -53,9 +54,19 @@ const getRecipes = async () => {
   isLoading.value = false;
 };
 
-const filteredProducts = computed(filterRecipes);
+const PAGE_SIZE = 12;
+const currentPage = ref(1);
 
-watch(searchString, filterRecipes);
+const filteredProducts = computed(filterRecipes);
+const totalPages = computed(() => Math.ceil(filteredProducts.value.length / PAGE_SIZE));
+const paginatedProducts = computed(() => {
+  const start = (currentPage.value - 1) * PAGE_SIZE;
+  return filteredProducts.value.slice(start, start + PAGE_SIZE);
+});
+
+watch(filteredProducts, () => {
+  currentPage.value = 1;
+});
 
 onMounted(() => {
   getRecipes();
@@ -86,7 +97,7 @@ onMounted(() => {
             :class="expandMobileFilter ? 'mobile-expand' : 'mobile-closed'"
           >
             <li
-              v-for="product in filteredProducts"
+              v-for="product in paginatedProducts"
               :key="product.id"
               class="fritel-filterables-grid--item"
             >
@@ -105,6 +116,7 @@ onMounted(() => {
               </a>
             </li>
           </TransitionGroup>
+          <Pagination v-model:currentPage="currentPage" :totalPages="totalPages" />
         </div>
       </div>
     </Transition>
