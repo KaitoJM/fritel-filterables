@@ -1,0 +1,84 @@
+[
+  {
+    "id": 1,
+    "name": "Clocks",
+    "multi": true,
+    "items": [
+      { "id": 1, "name": "Mantel Clocks" },
+      { "id": 2, "name": "Table Clocks" },
+      { "id": 3, "name": "Longcase Clocks" },
+      { "id": 4, "name": "Cartel Clocks" }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Candelabra & Lighting",
+    "multi": true,
+    "items": [
+      { "id": 1, "name": "Candelabra" },
+      { "id": 2, "name": "Girandoles" },
+      { "id": 3, "name": "Wall Lights" },
+      { "id": 4, "name": "Lamps" }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Furniture",
+    "multi": true,
+    "items": [
+      { "id": 1, "name": "Tables & Consoles" },
+      { "id": 2, "name": "Chairs & Armchairs" },
+      { "id": 3, "name": "Cabinets & Commodes" },
+      { "id": 4, "name": "Display Cabinets" }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Mirrors",
+    "multi": true,
+    "items": [
+      { "id": 1, "name": "Overmantel Mirrors" },
+      { "id": 2, "name": "Wall Mirrors" },
+      { "id": 3, "name": "Standing Mirrors" }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Decorative Objects",
+    "multi": true,
+    "items": [
+      { "id": 1, "name": "Sculptures & Busts" },
+      { "id": 2, "name": "Vases & Cassolettes" },
+      { "id": 3, "name": "Painting" },
+      { "id": 4, "name": "Other Curiosities" }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Art & Paintings",
+    "multi": true,
+    "items": [
+      { "id": 1, "name": "Paintings" },
+      { "id": 2, "name": "Drawings & Engravings" },
+      { "id": 3, "name": "Icons & Religious Art" }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Period - Years",
+    "multi": true,
+    "items": [
+      { "id": 1, "name": "Louis XV (ca. 1730 - 1770)" },
+      { "id": 2, "name": "Louis XVI (ca. 1770 - 1790)" },
+      { "id": 3, "name": "Directoire (ca. 1795 - 1805)" },
+      { "id": 4, "name": "Empire (ca. 1800 - 1830)" },
+      { "id": 5, "name": "Restauration (ca. 1825 - 1848)" },
+      { "id": 6, "name": "Biedermeier (ca. 1815 - 1848)" },
+      { "id": 7, "name": "Louis-Philippe (ca. 1830 - 1850)" },
+      { "id": 8, "name": "Napoleon III / Second Empire (ca. 1852 - 1870)" },
+      { "id": 9, "name": "Art Nouveau (ca. 1880 - 1910)" },
+      { "id": 10, "name": "Art Deco (ca. 1910 - 1940)" },
+      { "id": 11, "name": "Neoclassical" }
+    ]
+  }
+]

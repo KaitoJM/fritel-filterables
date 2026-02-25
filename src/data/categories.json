@@ -1,0 +1,82 @@
+[
+  {
+    "id": "Aperitif",
+    "name": "Aperitif"
+  },
+  {
+    "id": "Dehydrator",
+    "name": "Dehydrator"
+  },
+  {
+    "id": "Dessert und Gebäck",
+    "name": "Dessert und Gebäck"
+  },
+  {
+    "id": "Fisch",
+    "name": "Fisch"
+  },
+  {
+    "id": "Fleisch",
+    "name": "Fleisch"
+  },
+  {
+    "id": "Frittieren",
+    "name": "Frittieren"
+  },
+  {
+    "id": "Fun Cooking",
+    "name": "Fun Cooking"
+  },
+  {
+    "id": "Haubtgericht",
+    "name": "Haubtgericht"
+  },
+  {
+    "id": "Healthy lunch",
+    "name": "Healthy lunch"
+  },
+  {
+    "id": "Ice Cream Maker",
+    "name": "Ice Cream Maker"
+  },
+  {
+    "id": "Ijs",
+    "name": "Ijs"
+  },
+  {
+    "id": "Lunch",
+    "name": "Lunch"
+  },
+  {
+    "id": "Ontbijt",
+    "name": "Ontbijt"
+  },
+  {
+    "id": "Restjeskoken",
+    "name": "Restjeskoken"
+  },
+  {
+    "id": "Slowcooker",
+    "name": "Slowcooker"
+  },
+  {
+    "id": "SnackTastic",
+    "name": "SnackTastic"
+  },
+  {
+    "id": "Veggie",
+    "name": "Veggie"
+  },
+  {
+    "id": "Vorspeise",
+    "name": "Vorspeise"
+  },
+  {
+    "id": "WaffleTastic®",
+    "name": "WaffleTastic®"
+  },
+  {
+    "id": "Alle Rezepte",
+    "name": "Alle Rezepte"
+  }
+]
