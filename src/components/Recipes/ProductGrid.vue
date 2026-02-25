@@ -11,6 +11,7 @@ import Item from "./Item.vue";
 import ItemLoader from "./ItemLoader.vue";
 import Dialog from "../ui/Dialog.vue";
 import { parseRecipeTemplate } from "../../utils/parseRecipeTemplate";
+import { buildRecipePreviewHtml } from "../../utils/buildRecipePreviewHtml";
 
 const { selectedFilters } = useSelectedFilters();
 const { searchString } = useSearch();
@@ -85,29 +86,7 @@ const handlePreview = async (pageId) => {
       ? parseRecipeTemplate(pageHTML, recipe)
       : pageHTML;
 
-    previewHtml.value = `
-        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,400i,600,600i' id='selected-fonts' rel='stylesheet' type='text/css'/>
-        <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' rel='stylesheet' type='text/css'/>
-        <link href='https://uptodatewebdesign.s3.eu-west-3.amazonaws.com/cdn/dist/v2/app.min.css' rel='stylesheet' type='text/css'/>
-        <style id='style-theme-override'>body{font-weight:400;}h1{font-family:'Montserrat',serif;font-weight:null;font-size:36px;color:#000000;}h2{font-family:'Montserrat',serif;font-weight:null;font-size:30px;color:#000;}h3{font-family:'Montserrat',serif;font-weight:null;font-size:24px;color:#000000;}h4{font-family:'Montserrat',serif;font-weight:null;font-size:18px;color:#000000;}h5{font-family:'Montserrat',serif;font-weight:null;font-size:16px;color:#000000;}h6{font-family:'Montserrat',serif;font-weight:null;font-size:14px;color:#000000;}#primary-menu{background-color:#0a3209;}#sub-footer{background-color:#0a3209;}:root{--body-font-family:'Montserrat',serif;--body-font-color:#666666;--body-font-size:16px;--body-link:#e31c18;--body-link-hover:#354046;--body-line-height:1.6em;--menu-font-size:16px;--menu-icon-color:inherit;--menu-font-family:Montserrat;--menu-color:#000000;--menu-hover-link:inherit;--menu-hover-card:inherit;--menu-text-transform:normal;--footer-font-family:'Montserrat',serif;--footer-color:#FFFFFF;--footer-icon:#0a3209;--footer-font-size:16px;--footer-link:#0a3209;--footer-link-hover:#354046;--footer-line-height:1.5em;--page-title-color:#000000 --page-title-font-size:16px;--page-title-font-family:Montserrat;--page-title-line-height:1.5;--page-title-link:#0a3209;--page-title-hover:v#354046;--sub-footer-font-family:'Montserrat',serif;--sub-footer-color:#000000;--sub-footer-icon:inherit;--sub-footer-font-size:16px;--sub-footer-link:inherit;--sub-footer-link-hover:inherit;--sub-footer-line-height:1.5em;--topbar-font-size:53px;--topbar-icon-color:#0a3209;--topbar-font-family:Montserrat;--topbar-color:#000000;--container-max-width:1200px;--theme:#e31c18;--block-padding:6rem;--theme-hover:#354046;</style>
-        <style>
-        :root {
-            --theme: #e31c18;
-            --block-padding: 6rem;
-            --theme-hover: #354046;
-        }
-        body {
-            margin: 0;
-        }
-        </style>${processedHtml}
-        <script>
-        var utdElementSiteUrl = '${UTDService.siteId}';
-        var BLOGGER_URL = '/';
-        <\/script>
-        <script src='https://unpkg.com/swiper@6.1.2/swiper-bundle.min.js'><\/script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'><\/script>
-        <script src='https://uptodatewebdesign.s3.eu-west-3.amazonaws.com/cdn/dist/v2/app.min.multi-platform.js'><\/script>
-    `;
+    previewHtml.value = buildRecipePreviewHtml(processedHtml, UTDService.siteId);
   } catch (error) {
     dialogRef.value?.close();
   } finally {

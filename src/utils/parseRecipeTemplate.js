@@ -9,7 +9,6 @@ import Handlebars from "handlebars";
  * @returns {string} Rendered HTML
  */
 export function parseRecipeTemplate(templateHtml, recipe) {
-  const meta = recipe.metadata ?? {};
   const locationPageMeta = recipe.locationPageMeta ?? {};
 
   const data = {
@@ -22,7 +21,7 @@ export function parseRecipeTemplate(templateHtml, recipe) {
     pieces: locationPageMeta.pieces,
     ingredienten: locationPageMeta.ingredienten,
     verder_nog_nodig: locationPageMeta.verder_nog_nodig,
-    bereiding: locationPageMeta.tips,
+    bereiding: locationPageMeta.bereiding,
     tips: locationPageMeta.tips,
     video: locationPageMeta.video,
   };
