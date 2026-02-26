@@ -12,6 +12,7 @@ import ItemLoader from "./ItemLoader.vue";
 import Dialog from "../ui/Dialog.vue";
 import { parseRecipeTemplate } from "../../utils/parseRecipeTemplate";
 import { buildRecipePreviewHtml } from "../../utils/buildRecipePreviewHtml";
+import NoRecipesFound from "../../assets/no-recipes-found.png";
 
 const { selectedFilters } = useSelectedFilters();
 const { searchString } = useSearch();
@@ -112,12 +113,13 @@ onMounted(() => {
     <ItemLoader v-if="isLoading" />
     <Transition v-else name="fade" class="w-full">
       <div>
-        <p
-          class="fritel-filterables-grid--message"
+        <div
           v-if="selectedFilters.length && !filteredProducts.length"
+          class="fritel-filterables-grid--empty-state"
         >
-          <i>{{ messages.no_match.en }}</i>
-        </p>
+          <img :src="NoRecipesFound" />
+          <p>{{ messages.no_match.en }}</p>
+        </div>
         <div class="w-full" v-if="!isLoading">
           <Transition name="page-fade" mode="out-in">
             <ul
@@ -169,6 +171,14 @@ onMounted(() => {
 .fritel-filterables-grid {
   &--filter-breadcrumbs {
     @apply mb-3;
+  }
+
+  &--empty-state {
+    @apply flex flex-col gap-4 items-center justify-center p-10 min-h-screen;
+
+    img {
+      @apply w-full md:w-[500px];
+    }
   }
 
   &--message {
