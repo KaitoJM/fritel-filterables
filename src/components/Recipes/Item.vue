@@ -7,7 +7,13 @@
       <img :src="props.image" />
     </div>
     <div class="fritel-filterables-grid--details">
-      <p class="fritel-filterables-grid--author">{{ props.author }}</p>
+      <p class="fritel-filterables-grid--author">
+        <!-- Font Awesome fa-solid fa-user -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+          <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/>
+        </svg>
+        {{ props.author }}
+      </p>
       <div class="fritel-filterables-grid--item-titlebar">
         <h3 class="fritel-filterables-grid--title">
           {{ props.name }}
@@ -38,7 +44,9 @@ const emit = defineEmits<{ preview: [pageId: string] }>();
 const categoriesStore = useCategoriesStore();
 
 const visibleTags = computed(() => {
-  const categoryIds = new Set(categoriesStore.categories.map((c) => c.id.toLowerCase()));
+  const categoryIds = new Set(
+    categoriesStore.categories.map((c) => c.id.toLowerCase()),
+  );
   return props.tags.filter((tag) => categoryIds.has(tag.toLowerCase()));
 });
 </script>
@@ -58,7 +66,14 @@ const visibleTags = computed(() => {
   }
 
   &--author {
-    @apply absolute top-4 left-4 bg-primary py-2 px-6 text-[1.2rem] font-bold text-white rounded;
+    @apply absolute top-4 left-4 bg-primary py-2 px-6 text-[1.2rem] font-bold text-white rounded
+           flex items-center gap-2;
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+      flex-shrink: 0;
+    }
   }
 
   &--title {
