@@ -169,15 +169,7 @@ onMounted(() => {
   }
 
   &--list {
-    @apply grid gap-6;
-
-    &.mobile-expand {
-      @apply grid-cols-1 sm:grid-cols-2;
-    }
-
-    &.mobile-closed {
-      @apply grid-cols-1 sm:grid-cols-2 md:grid-cols-3;
-    }
+    @apply grid gap-6 grid-cols-2 lg:grid-cols-3;
   }
 }
 </style>

@@ -23,7 +23,7 @@ const { selectedFilters } = useSelectedFilters();
 <style lang="scss">
 .fritel-filterables-app {
   &--container {
-    @apply flex gap-16 p-6;
+    @apply flex flex-col md:flex-row gap-16 p-6;
   }
 
   &--left {

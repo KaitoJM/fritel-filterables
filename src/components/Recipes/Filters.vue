@@ -49,7 +49,6 @@ onMounted(() => {
     <h3>Filters</h3>
     <ul class="filter-group-container">
       <FilterGroup
-        class="w-[300px]"
         :name="filterCategories.name"
         :items="filterCategories.items"
         default-expand
@@ -58,7 +57,6 @@ onMounted(() => {
     <br />
     <ul class="filter-group-container">
       <FilterGroup
-        class="w-[300px]"
         :name="filterAuthors.name"
         :items="filterAuthors.items"
         default-expand
@@ -73,12 +71,12 @@ h3 {
 }
 
 .filter-container {
-  @apply p-4;
+  @apply p-4 w-full;
 
   background-color: #efefef80;
   border-radius: 12px;
-  width: max-content;
 }
 .filter-group-container {
+  @apply w-full md:w-[300px];
 }
 </style>
