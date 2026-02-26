@@ -4,8 +4,10 @@ import authors from "../../data/authors.json";
 import UTDService from "../../services/UTDService";
 import FilterGroup from "./FilterGroup.vue";
 import { useCategoriesStore } from "../../stores/categoriesStore";
+import { useAuthorStore } from "../../stores/authorStore";
 
 const categoriesStore = useCategoriesStore();
+const authorStore = useAuthorStore();
 
 const isLoading = ref(true);
 const filterCategories = ref({
@@ -18,7 +20,7 @@ const filterAuthors = ref({
   id: "authors",
   name: "Authors",
   multi: true,
-  items: authors,
+  items: authorStore.authors,
 });
 const emit = defineEmits(["select"]);
 
@@ -26,6 +28,8 @@ const getFilters = async () => {
   isLoading.value = true;
   const res = await UTDService.getFilters();
   categoriesStore.setCategories(res.categories);
+  authorStore.setAuthors(res.authors);
+
   filterCategories.value = {
     id: "categories",
     name: "Categories",
