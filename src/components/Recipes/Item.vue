@@ -1,5 +1,8 @@
 <template>
-  <li class="fritel-filterables-grid--item" @click="emit('preview', props.pageId)">
+  <li
+    class="fritel-filterables-grid--item"
+    @click="emit('preview', props.pageId)"
+  >
     <div class="fritel-filterables-grid--image-container">
       <img :src="props.image" />
     </div>
@@ -11,14 +14,16 @@
         </h3>
       </div>
       <div class="fritel-filterables-grid--tags">
-        <Badge v-for="tag in props.tags" :key="tag">{{ tag }}</Badge>
+        <Badge v-for="tag in visibleTags" :key="tag">{{ tag }}</Badge>
       </div>
     </div>
   </li>
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import Badge from "../ui/Badge.vue";
+import { useCategoriesStore } from "../../stores/categoriesStore";
 
 const props = defineProps<{
   name: string;
@@ -29,6 +34,13 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{ preview: [pageId: string] }>();
+
+const categoriesStore = useCategoriesStore();
+
+const visibleTags = computed(() => {
+  const categoryIds = new Set(categoriesStore.categories.map((c) => c.id.toLowerCase()));
+  return props.tags.filter((tag) => categoryIds.has(tag.toLowerCase()));
+});
 </script>
 
 <style scoped lang="scss">
@@ -50,7 +62,7 @@ const emit = defineEmits<{ preview: [pageId: string] }>();
   }
 
   &--title {
-    @apply text-[1.5rem] font-[500] text-center;
+    @apply text-[1.5rem] font-[500] text-center text-primary;
   }
 
   &--details {

@@ -1,21 +1,22 @@
 <script setup>
 import { onMounted, ref } from "vue";
-import filters from "../../data/filters.json";
-import categories from "../../data/categories.json";
 import authors from "../../data/authors.json";
 import UTDService from "../../services/UTDService";
 import FilterGroup from "./FilterGroup.vue";
+import { useCategoriesStore } from "../../stores/categoriesStore";
+
+const categoriesStore = useCategoriesStore();
 
 const isLoading = ref(true);
 const filterCategories = ref({
   id: "categories",
   name: "Categories",
   multi: true,
-  items: categories,
+  items: categoriesStore.categories,
 });
 const filterAuthors = ref({
   id: "authors",
-  name: "Auithors",
+  name: "Authors",
   multi: true,
   items: authors,
 });
@@ -24,6 +25,7 @@ const emit = defineEmits(["select"]);
 const getFilters = async () => {
   isLoading.value = true;
   const res = await UTDService.getFilters();
+  categoriesStore.setCategories(res.categories);
   filterCategories.value = {
     id: "categories",
     name: "Categories",
@@ -32,7 +34,7 @@ const getFilters = async () => {
   };
   filterAuthors.value = {
     id: "authors",
-    name: "Auithors",
+    name: "Authors",
     multi: true,
     items: res.authors,
   };
