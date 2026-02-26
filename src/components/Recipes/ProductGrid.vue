@@ -119,23 +119,24 @@ onMounted(() => {
           <i>{{ messages.no_match.en }}</i>
         </p>
         <div class="w-full" v-if="!isLoading">
-          <TransitionGroup
-            name="list"
-            tag="ul"
-            class="fritel-filterables-grid--list"
-            :class="expandMobileFilter ? 'mobile-expand' : 'mobile-closed'"
-          >
-            <Item
-              v-for="product in paginatedProducts"
-              :key="product.id"
-              :name="product.name"
-              :author="product?.locationPageMeta?.author"
-              :image="product.metadata.image"
-              :pageId="product.pageId"
-              :tags="product.metadata.categories"
-              @preview="handlePreview"
-            />
-          </TransitionGroup>
+          <Transition name="page-fade" mode="out-in">
+            <ul
+              :key="currentPage"
+              class="fritel-filterables-grid--list"
+              :class="expandMobileFilter ? 'mobile-expand' : 'mobile-closed'"
+            >
+              <Item
+                v-for="product in paginatedProducts"
+                :key="product.id"
+                :name="product.name"
+                :author="product?.locationPageMeta?.author"
+                :image="product.metadata.image"
+                :pageId="product.pageId"
+                :tags="product.metadata.categories"
+                @preview="handlePreview"
+              />
+            </ul>
+          </Transition>
           <Pagination
             v-model:currentPage="currentPage"
             :totalPages="totalPages"
@@ -155,6 +156,16 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
+.page-fade-enter-active,
+.page-fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.page-fade-enter-from,
+.page-fade-leave-to {
+  opacity: 0;
+}
+
 .fritel-filterables-grid {
   &--filter-breadcrumbs {
     @apply mb-3;
