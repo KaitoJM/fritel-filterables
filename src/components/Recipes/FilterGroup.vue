@@ -56,7 +56,7 @@ const onLeave = (el) => {
         {{ props.name }}
       </h3>
       <svg
-        class="h-3.5 w-3.5"
+        class="fritel-recipe-chevron-icon"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 512 512"
       >
@@ -108,5 +108,9 @@ li {
   &--item {
     @apply mb-4 flex gap-2 items-center;
   }
+}
+
+.fritel-recipe-chevron-icon {
+  @apply size-3.5;
 }
 </style>
